@@ -15,5 +15,7 @@ namespace AdminWebSite.DAL.Entities
         public string Name { get; set; }
         public DateTime DateCreate { get; set; }
         public int Priority { get; set; }
+
+        virtual public ICollection<City> Cities { get; set; }
     }
 }
