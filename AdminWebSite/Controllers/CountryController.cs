@@ -29,7 +29,7 @@ namespace AdminWebSite.Controllers
                     Priority=c.Priority,
                     DateCreate= c.DateCreate
                 })
-                .OrderBy(c=>c.Priority)
+                .OrderByDescending(c=>c.Priority)
                 .ToList();
             return View(model);
         }
@@ -47,6 +47,32 @@ namespace AdminWebSite.Controllers
                 Priority=model.Priority
             };
             _context.Countries.Add(country);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        
+        public ActionResult Delete(int countryId)
+        {
+            _context.Countries.Remove(_context.Countries.FirstOrDefault(c => c.Id == countryId));
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(int countryId)
+        {
+            Country country = _context.Countries.FirstOrDefault(c => c.Id == countryId);
+            CountryEditViewModel model = new CountryEditViewModel
+            {
+                Name = country.Name,
+                Priority = country.Priority
+            };
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult Edit(CountryEditViewModel model, int countryId)
+        {
+            _context.Countries.FirstOrDefault(c => c.Id == countryId).Name = model.Name;
+            _context.Countries.FirstOrDefault(c => c.Id == countryId).Priority = model.Priority;
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
