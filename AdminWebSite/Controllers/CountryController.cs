@@ -51,16 +51,16 @@ namespace AdminWebSite.Controllers
             return RedirectToAction("Index");
         }
         
-        public ActionResult Delete(int countryId)
+        public ActionResult Delete(int id)
         {
-            _context.Countries.Remove(_context.Countries.FirstOrDefault(c => c.Id == countryId));
+            _context.Countries.Remove(_context.Countries.FirstOrDefault(c => c.Id == id));
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        public ActionResult Edit(int countryId)
+        public ActionResult Edit(int id)
         {
-            Country country = _context.Countries.FirstOrDefault(c => c.Id == countryId);
+            Country country = _context.Countries.FirstOrDefault(c => c.Id == id);
             CountryEditViewModel model = new CountryEditViewModel
             {
                 Name = country.Name,
@@ -69,10 +69,10 @@ namespace AdminWebSite.Controllers
             return View(model);
         }
         [HttpPost]
-        public ActionResult Edit(CountryEditViewModel model, int countryId)
+        public ActionResult Edit(CountryEditViewModel model, int id)
         {
-            _context.Countries.FirstOrDefault(c => c.Id == countryId).Name = model.Name;
-            _context.Countries.FirstOrDefault(c => c.Id == countryId).Priority = model.Priority;
+            _context.Countries.FirstOrDefault(c => c.Id == id).Name = model.Name;
+            _context.Countries.FirstOrDefault(c => c.Id == id).Priority = model.Priority;
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
