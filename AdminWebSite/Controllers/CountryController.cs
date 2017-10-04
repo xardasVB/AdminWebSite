@@ -41,11 +41,16 @@ namespace AdminWebSite.Controllers
         [HttpPost]
         public ActionResult Create(CountryCreateViewModel model)
         {
+            List<string> countryNames = _context.Countries.Select(c => c.Name).ToList();
+            if (countryNames.Contains(model.Name))
+                ModelState.AddModelError("", "This country already exists");
+
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("", "Are you retarded or something?");
                 return View(model);
             }
+
             Country country = new Country
             {
                 DateCreate = DateTime.Now,

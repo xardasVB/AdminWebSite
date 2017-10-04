@@ -50,21 +50,37 @@ namespace AdminWebSite.Controllers
         [HttpPost]
         public ActionResult Create(CityCreateViewModel model)
         {
+            List<string> citiesNames = _context.Cities.Select(c => c.Name).ToList();
+
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("", "Are you retarded or something?");
+                model.Countries = _context
+               .Countries
+               .Select(c => new SelectItemViewModel
+               {
+                   Id = c.Id,
+                   Name = c.Name
+               }).ToList();
                 return View(model);
             }
-            City city = new City
+
+            if (citiesNames.Contains(model.Name))
+                ModelState.AddModelError("", "This city already exists");
+            else
             {
-                DateCreate = DateTime.Now,
-                Name = model.Name,
-                Priority = model.Priority,
-                CountryId = model.CountryId
-            };
-            _context.Cities.Add(city);
-            _context.SaveChanges();
-            return RedirectToAction("Index");
+                City city = new City
+                {
+                    DateCreate = DateTime.Now,
+                    Name = model.Name,
+                    Priority = model.Priority,
+                    CountryId = model.CountryId
+                };
+                _context.Cities.Add(city);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(model);
         }
         public ActionResult Delete(int id)
         {
@@ -92,16 +108,32 @@ namespace AdminWebSite.Controllers
         [HttpPost]
         public ActionResult Edit(CityEditViewModel model, int id)
         {
+            List<string> citiesNames = _context.Cities.Select(c => c.Name).ToList();
+
             if (!ModelState.IsValid)
             {
-                ModelState.AddModelError("", "Are you retarded or something?");
+                ModelState.AddModelError("", "Are you retarded or something?"); model.Countries = _context
+                .Countries
+                .Select(c => new SelectItemViewModel
+                {
+                    Id = c.Id,
+                    Name = c.Name
+                }).ToList();
                 return View(model);
             }
-            _context.Cities.FirstOrDefault(c => c.Id == id).Name = model.Name;
-            _context.Cities.FirstOrDefault(c => c.Id == id).Priority = model.Priority;
-            _context.Cities.FirstOrDefault(c => c.Id == id).CountryId = model.CountryId;
-            _context.SaveChanges();
-            return RedirectToAction("Index");
+
+            if (citiesNames.Contains(model.Name))
+                ModelState.AddModelError("", "This city already exists");
+            else
+            {
+
+                _context.Cities.FirstOrDefault(c => c.Id == id).Name = model.Name;
+                _context.Cities.FirstOrDefault(c => c.Id == id).Priority = model.Priority;
+                _context.Cities.FirstOrDefault(c => c.Id == id).CountryId = model.CountryId;
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(model);
         }
         public ActionResult Details(int id)
         {
