@@ -50,6 +50,11 @@ namespace AdminWebSite.Controllers
         [HttpPost]
         public ActionResult Create(CityCreateViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Are you retarded or something?");
+                return View(model);
+            }
             City city = new City
             {
                 DateCreate = DateTime.Now,
@@ -87,6 +92,11 @@ namespace AdminWebSite.Controllers
         [HttpPost]
         public ActionResult Edit(CityEditViewModel model, int id)
         {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Are you retarded or something?");
+                return View(model);
+            }
             _context.Cities.FirstOrDefault(c => c.Id == id).Name = model.Name;
             _context.Cities.FirstOrDefault(c => c.Id == id).Priority = model.Priority;
             _context.Cities.FirstOrDefault(c => c.Id == id).CountryId = model.CountryId;

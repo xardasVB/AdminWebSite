@@ -39,7 +39,7 @@
                     Text = c.Name
                 }),
                 new { @class = "form-control" })
-                @Html.EditorFor(model => model.CountryId, new { @class = "form-control" } )
+                @Html.EditorFor(model => model.CountryId, new { htmlAttributes = new { @class = "form-control" } })
             </div>
         </div>
 

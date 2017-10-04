@@ -9,9 +9,19 @@
     border-color: red;
 }
 
+.field-validation-error {
+    color: red;
+    padding-left: 15px;
+}
+
 * {
     box-sizing: border-box;
     text-decoration: none;
+}
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 #row {

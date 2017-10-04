@@ -19,20 +19,21 @@ namespace AdminWebSite.Models
     }
     public class CountryCreateViewModel
     {
-        [Required]
+        [Required(ErrorMessage ="Name is required")]
         [Display(Name = "Name")]
         public string Name { get; set; }
-        [Required]
-        [Range(1, short.MaxValue)]
+        [Required(ErrorMessage = "Priority is required")]
+        [Range(1, short.MaxValue, ErrorMessage ="Range: 1-31456")]
         [Display(Name = "Priority")]
         public int Priority { get; set; }
     }
     public class CountryEditViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Name is required")]
         [Display(Name = "Name")]
         public string Name { get; set; }
-        [Range(1, short.MaxValue)]
+        [Required(ErrorMessage = "Priority is required")]
+        [Range(1, short.MaxValue, ErrorMessage = "Range: 1-31456")]
         [Display(Name = "Priority")]
         public int Priority { get; set; }
     }
