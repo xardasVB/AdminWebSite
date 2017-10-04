@@ -76,5 +76,17 @@ namespace AdminWebSite.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+        public ActionResult Details(int id)
+        {
+            Country country = _context.Countries.FirstOrDefault(c => c.Id == id);
+            CountryViewModel model = new CountryViewModel
+            {
+                Name = country.Name,
+                Priority = country.Priority,
+                DateCreate = country.DateCreate,
+                Id = country.Id
+            };
+            return View(model);
+        }
     }
 }

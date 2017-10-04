@@ -59,5 +59,50 @@ namespace AdminWebSite.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+        public ActionResult Delete(int id)
+        {
+            _context.Cities.Remove(_context.Cities.FirstOrDefault(c => c.Id == id));
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            City city = _context.Cities.FirstOrDefault(c => c.Id == id);
+            CityEditViewModel model = new CityEditViewModel();
+            model.Countries = _context
+                .Countries
+                .Select(c => new SelectItemViewModel
+                {
+                    Id = c.Id,
+                    Name = c.Name
+                }).ToList();
+            model.Name = city.Name;
+            model.Priority = city.Priority;
+            model.CountryId = city.CountryId;
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult Edit(CityEditViewModel model, int id)
+        {
+            _context.Cities.FirstOrDefault(c => c.Id == id).Name = model.Name;
+            _context.Cities.FirstOrDefault(c => c.Id == id).Priority = model.Priority;
+            _context.Cities.FirstOrDefault(c => c.Id == id).CountryId = model.CountryId;
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult Details(int id)
+        {
+            City city = _context.Cities.FirstOrDefault(c => c.Id == id);
+            CityViewModel model = new CityViewModel
+            {
+                Name = city.Name,
+                Priority = city.Priority,
+                DateCreate = city.DateCreate,
+                Country = city.Country.Name,
+                Id = city.Id
+            };
+            return View(model);
+        }
     }
 }
