@@ -33,16 +33,12 @@
             <div class="content">
                 <ul class="sidemenu">
                     <li>
-                        <a class="menulinks active" href="@Url.Action("Index", "Country")">Countries</a>
+                        <a class="menulinks @((ViewBag.MenuCountry != null) ? "active" : "")" href="@Url.Action("Index", "Country")">Countries</a>
                     </li>
                     <li>
-                        <a class="menulinks" href="@Url.Action("Index", "City")">Cities</a>
+                        <a class="menulinks @((ViewBag.MenuCity != null) ? "active" : "")" href="@Url.Action("Index", "City")">Cities</a>
                         @*@Html.ActionLink("Cities", "Index", "City", null, new { @class = "menulinks" });*@
                     </li>
-                    <li>
-                        <a class="menulinks" id="HotelLink">Hotel</a>
-                    </li>
-                    <li><a class="menulinks" id="TourLink" Addid="defaultOpen">Add new tour</a></li>
                 </ul>
             </div>
 

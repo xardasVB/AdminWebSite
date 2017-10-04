@@ -15,6 +15,7 @@ namespace AdminWebSite.Controllers
         public CountryController()
         {
             _context = new EFContext();
+            ViewBag.MenuCountry = true;
         }
         // GET: Country
         public ActionResult Index()
@@ -22,14 +23,14 @@ namespace AdminWebSite.Controllers
             List<CountryViewModel> model;
             model = _context
                 .Countries
-                .Select(c=> new CountryViewModel
+                .Select(c => new CountryViewModel
                 {
-                    Id=c.Id,
-                    Name=c.Name,
-                    Priority=c.Priority,
-                    DateCreate= c.DateCreate
+                    Id = c.Id,
+                    Name = c.Name,
+                    Priority = c.Priority,
+                    DateCreate = c.DateCreate
                 })
-                .OrderByDescending(c=>c.Priority)
+                .OrderByDescending(c => c.Priority)
                 .ToList();
             return View(model);
         }
@@ -40,17 +41,22 @@ namespace AdminWebSite.Controllers
         [HttpPost]
         public ActionResult Create(CountryCreateViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Are you retarded or something?");
+                return View(model);
+            }
             Country country = new Country
             {
-                DateCreate=DateTime.Now,
-                Name=model.Name,
-                Priority=model.Priority
+                DateCreate = DateTime.Now,
+                Name = model.Name,
+                Priority = model.Priority
             };
             _context.Countries.Add(country);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
-        
+
         public ActionResult Delete(int id)
         {
             _context.Countries.Remove(_context.Countries.FirstOrDefault(c => c.Id == id));
@@ -71,6 +77,11 @@ namespace AdminWebSite.Controllers
         [HttpPost]
         public ActionResult Edit(CountryEditViewModel model, int id)
         {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Are you retarded or something?");
+                return View(model);
+            }
             _context.Countries.FirstOrDefault(c => c.Id == id).Name = model.Name;
             _context.Countries.FirstOrDefault(c => c.Id == id).Priority = model.Priority;
             _context.SaveChanges();

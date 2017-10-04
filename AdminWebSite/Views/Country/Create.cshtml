@@ -1,16 +1,15 @@
 ﻿@model AdminWebSite.Models.CountryCreateViewModel
 
 @{
-    ViewBag.Title = "Створення країни";
+    ViewBag.Title = "Create Country";
 }
 
-<h2>Додати нову країну</h2>
+<h2>Create Country</h2>
 
 @using (Html.BeginForm()) 
 {
     
     <div class="form-horizontal">
-        <h4>Інформація про країну</h4>
         <hr />
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -35,5 +34,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
 </div>

@@ -8,34 +8,34 @@ namespace AdminWebSite.Models
 {
     public class CityViewModel
     {
-        [Display(Name = "Код міста")]
+        [Display(Name = "City Id")]
         public int Id { get; set; }
-        [Display(Name = "Назва")]
+        [Display(Name = "Name")]
         public string Name { get; set; }
-        [Display(Name = "Дата створення")]
+        [Display(Name = "Creation Date")]
         public DateTime DateCreate { get; set; }
-        [Display(Name = "Пріорітет")]
+        [Display(Name = "Priority")]
         public int Priority { get; set; }
-        [Display(Name = "Країна")]
+        [Display(Name = "Country")]
         public string Country { get; set; }
     }
     public class CityCreateViewModel
     {
-        [Display(Name = "Назва")]
+        [Display(Name = "Name")]
         public string Name { get; set; }
-        [Display(Name = "Пріорітет")]
+        [Display(Name = "Priority")]
         public int Priority { get; set; }
-        [Display(Name = "Країна")]
+        [Display(Name = "Country")]
         public int CountryId { get; set; }
         public List<SelectItemViewModel> Countries { get; set; }
     }
     public class CityEditViewModel
     {
-        [Display(Name = "Назва")]
+        [Display(Name = "Name")]
         public string Name { get; set; }
-        [Display(Name = "Пріорітет")]
+        [Display(Name = "Priority")]
         public int Priority { get; set; }
-        [Display(Name = "Країна")]
+        [Display(Name = "Country")]
         public int CountryId { get; set; }
         public List<SelectItemViewModel> Countries { get; set; }
     }

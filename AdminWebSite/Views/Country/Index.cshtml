@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<AdminWebSite.Models.CountryViewModel>
 
 @{
-    ViewBag.Title = "Список країн";
+    ViewBag.Title = "Countries";
 }
 
-<h2>Країни</h2>
+<h2>Countries</h2>
 
 <p>
     @*<a href="@Url.Action("Create")">Create New</a>*@
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <thead>

@@ -16,6 +16,7 @@ namespace AdminWebSite.Controllers
         public CityController()
         {
             _context = new EFContext();
+            ViewBag.MenuCity = true;
         }
         // GET: City
         public ActionResult Index()
@@ -30,7 +31,8 @@ namespace AdminWebSite.Controllers
                     DateCreate = c.DateCreate,
                     Priority = c.Priority,
                     Country = c.Country.Name
-                });
+                })
+                .OrderByDescending(c => c.Priority);
             return View(model);
         }
         public ActionResult Create()

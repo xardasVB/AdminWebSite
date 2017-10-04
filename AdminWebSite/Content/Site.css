@@ -5,6 +5,10 @@
     font-family: 'Open Sans', sans-serif;
 }
 
+.input-validation-error {
+    border-color: red;
+}
+
 * {
     box-sizing: border-box;
     text-decoration: none;

@@ -8,27 +8,32 @@ namespace AdminWebSite.Models
 {
     public class CountryViewModel
     {
-        [Display(Name="Код країни")]
+        [Display(Name="Coutry Id")]
         public int Id { get; set; }
-        [Display(Name = "Назва")]
+        [Display(Name = "Name")]
         public string Name { get; set; }
-        [Display(Name = "Дата створення")]
+        [Display(Name = "Creation Date")]
         public DateTime DateCreate { get; set; }
-        [Display(Name = "Пріорітет")]
+        [Display(Name = "Priority")]
         public int Priority { get; set; }
     }
     public class CountryCreateViewModel
     {
-        [Display(Name = "Назва")]
+        [Required]
+        [Display(Name = "Name")]
         public string Name { get; set; }
-        [Display(Name = "Пріорітет")]
+        [Required]
+        [Range(1, short.MaxValue)]
+        [Display(Name = "Priority")]
         public int Priority { get; set; }
     }
     public class CountryEditViewModel
     {
-        [Display(Name = "Назва")]
+        [Required]
+        [Display(Name = "Name")]
         public string Name { get; set; }
-        [Display(Name = "Пріорітет")]
+        [Range(1, short.MaxValue)]
+        [Display(Name = "Priority")]
         public int Priority { get; set; }
     }
 }
