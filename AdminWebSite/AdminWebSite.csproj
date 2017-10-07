@@ -155,6 +155,7 @@
     <Compile Include="DAL\EFContext.cs" />
     <Compile Include="DAL\Entities\City.cs" />
     <Compile Include="DAL\Entities\Country.cs" />
+    <Compile Include="DAL\Entities\Hotel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -165,6 +166,10 @@
     <Compile Include="Migrations\201710031720187_Create Cities Table.cs" />
     <Compile Include="Migrations\201710031720187_Create Cities Table.Designer.cs">
       <DependentUpon>201710031720187_Create Cities Table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710071648357_Create Hotels Table.cs" />
+    <Compile Include="Migrations\201710071648357_Create Hotels Table.Designer.cs">
+      <DependentUpon>201710071648357_Create Hotels Table.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CityViewModel.cs" />
@@ -258,6 +263,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710031720187_Create Cities Table.resx">
       <DependentUpon>201710031720187_Create Cities Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710071648357_Create Hotels Table.resx">
+      <DependentUpon>201710071648357_Create Hotels Table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

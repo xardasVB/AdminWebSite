@@ -20,5 +20,7 @@ namespace AdminWebSite.DAL.Entities
         [ForeignKey("Country")]
         public int CountryId { get; set; }
         virtual public Country Country { get; set; }
+
+        virtual public ICollection<Hotel> Hotels { get; set; }
     }
 }
